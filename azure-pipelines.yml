@@ -1,7 +1,7 @@
 trigger:
   branches:
     include:
-      - main  # O la rama que usas para despliegues
+      - prueba-bco  # O la rama que usas para despliegues
 
 pool: my_agent_pool
 
