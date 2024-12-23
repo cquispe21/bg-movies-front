@@ -1,17 +1,17 @@
 trigger:
   branches:
     include:
-      - prueba-bco  # O la rama que usas para despliegues
+      - prueba-bco 
 
 pool: my_agent_pool
 
 steps:
   - task: NodeTool@0
     inputs:
-      versionSpec: '22.x'  # Asegúrate de que sea la versión de Node.js que necesitas
+      versionSpec: '22.x'  
     displayName: 'Install Node.js'
 
-  - checkout: self  # Esto descargará el código de tu repositorio
+  - checkout: self  
 
   - script: |
       npm install
@@ -23,18 +23,18 @@ steps:
 
   - task: CopyFiles@2
     inputs:
-      SourceFolder: '$(Build.SourcesDirectory)/dist'  # Asegúrate de que esta sea la ruta correcta de tu build
-      TargetFolder: '$(Build.ArtifactStagingDirectory)'  # Copia el contenido a ArtifactStagingDirectory
+      SourceFolder: '$(Build.SourcesDirectory)/dist' 
+      TargetFolder: '$(Build.ArtifactStagingDirectory)' 
     displayName: 'Copy build files to artifact staging directory'
 
   - task: ArchiveFiles@2
     inputs:
-      rootFolderOrFile: '$(Build.ArtifactStagingDirectory)'  # Directorio que contiene los archivos de build
+      rootFolderOrFile: '$(Build.ArtifactStagingDirectory)' 
       includeRootFolder: false
       archiveType: 'zip'  # Empaquetar como .zip
-      archiveFile: '$(Build.ArtifactStagingDirectory)/react-build.zip'  # Nombre del archivo zip
+      archiveFile: '$(Build.ArtifactStagingDirectory)/Angular-build.zip'  
     displayName: 'Create .zip of build files'
 
-  - publish: '$(Build.ArtifactStagingDirectory)/react-build.zip'
-    artifact: react-build
-    displayName: 'Publish React build'
+  - publish: '$(Build.ArtifactStagingDirectory)/Angular-build.zip'
+    artifact: Angular-build
+    displayName: 'Publish Angular build'
