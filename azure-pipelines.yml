@@ -23,7 +23,7 @@ steps:
 
   - task: CopyFiles@2
     inputs:
-      SourceFolder: '$(Build.SourcesDirectory)/dist' 
+      SourceFolder: '$(Build.SourcesDirectory)/dist/bg-cotizador' 
       TargetFolder: '$(Build.ArtifactStagingDirectory)' 
     displayName: 'Copy build files to artifact staging directory'
 
