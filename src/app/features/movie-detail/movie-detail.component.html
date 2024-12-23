@@ -1,0 +1,25 @@
+<div class="movie-detail">
+    <div class="poster">
+      <img [src]="'https://image.tmdb.org/t/p/w500' + movie.poster_path" alt="{{ movie.title }}" />
+    </div>
+    <div class="details">
+      <h1>{{ movie.title }}</h1>
+      <p class="tagline">{{ movie.tagline }}</p>
+      <p class="overview">{{ movie.overview }}</p>
+  
+      <div class="info">
+        <p><strong>Release Date:</strong> {{ movie.release_date }}</p>
+        <p><strong>Runtime:</strong> {{ movie.runtime }} minutes</p>
+        <p><strong>Genres:</strong> {{ genresList }}</p>
+        <p><strong>Production Companies:</strong> {{productionCompanies }}</p>
+        <p><strong>Budget:</strong> ${{ movie.budget | number }}</p>
+        <p><strong>Revenue:</strong> ${{ movie.revenue | number }}</p>
+      </div>
+  
+      <div class="additional-links">
+        <a [href]="movie.homepage" target="_blank" *ngIf="movie.homepage">Official Website</a>
+        <a [href]="'https://www.imdb.com/title/' + movie.imdb_id" target="_blank">IMDB</a>
+      </div>
+    </div>
+  </div>
+  

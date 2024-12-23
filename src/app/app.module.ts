@@ -2,24 +2,21 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppComponent } from './app.component';
-import { CotizadorModule } from './cotizador/cotizador.module';
-import { SharedModule } from './shared/shared.module';
-import { CatalogModule } from './catalog/catalog.module';
 import { CommonModule } from '@angular/common';
 import { CatalogComponent } from './features/catalog/catalog.component';
+import { CardComponent } from './shared/card/card.component';
+import { HttpClientModule } from '@angular/common/http';
+import { MovieDetailComponent } from './features/movie-detail/movie-detail.component';
+import { AppRoutingModule } from './routes/app-routes';
 
 @NgModule({
   declarations: [
     AppComponent,
-    CatalogComponent
+    CatalogComponent,
+    CardComponent,
+    MovieDetailComponent
   ],
-  imports: [
-    BrowserModule,
-    CotizadorModule,
-    SharedModule,
-    CatalogModule,
-    CommonModule
-  ],
+  imports: [BrowserModule, CommonModule,HttpClientModule,AppRoutingModule], 
   providers: [],
   bootstrap: [AppComponent]
 })

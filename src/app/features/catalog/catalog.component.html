@@ -1,3 +1,7 @@
-<div>
-    <bg-card></bg-card>
+<div class="film-list">
+  <bg-card
+    *ngFor="let catalog of catalog"
+    [movie]="catalog"
+    (cardClicked)="onMovieClick($event)"
+  ></bg-card>
 </div>
