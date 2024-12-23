@@ -1,4 +1,4 @@
 
 export const environment = {
-    apiUrl: 'https://api.themoviedb.org/3',
+    apiUrl: 'https://localhost:7259/api/',
 };
