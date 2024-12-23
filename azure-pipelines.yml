@@ -1,0 +1,40 @@
+trigger:
+  branches:
+    include:
+      - prueba-bco 
+
+pool: my_agent_pool
+
+steps:
+  - task: NodeTool@0
+    inputs:
+      versionSpec: '22.x'  
+    displayName: 'Install Node.js'
+
+  - checkout: self  
+
+  - script: |
+      npm install
+    displayName: 'npm install'
+
+  - script: |
+      npm run build:test
+    displayName: 'npm build'
+
+  - task: CopyFiles@2
+    inputs:
+      SourceFolder: '$(Build.SourcesDirectory)/dist/bg-cotizador' 
+      TargetFolder: '$(Build.ArtifactStagingDirectory)' 
+    displayName: 'Copy build files to artifact staging directory'
+
+  - task: ArchiveFiles@2
+    inputs:
+      rootFolderOrFile: '$(Build.ArtifactStagingDirectory)' 
+      includeRootFolder: false
+      archiveType: 'zip'  # Empaquetar como .zip
+      archiveFile: '$(Build.ArtifactStagingDirectory)/Angular-build.zip'  
+    displayName: 'Create .zip of build files'
+
+  - publish: '$(Build.ArtifactStagingDirectory)/Angular-build.zip'
+    artifact: Angular-build
+    displayName: 'Publish Angular build'
